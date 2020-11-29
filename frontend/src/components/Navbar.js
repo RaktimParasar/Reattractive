@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment } from 'react'
 
 const Navbar = props => {
     return (
-        <div>
-            <h1>Navbar</h1>
-        </div>
+        <Fragment>
+            <nav>
+                <div class="nav-center">
+                    <h1>minimal blog</h1>
+                    <button class="btn dark-mode">toggle</button>
+                </div>
+            </nav>
+        </Fragment>
     )
-}
-
-Navbar.propTypes = {
-
 }
 
 export default Navbar
