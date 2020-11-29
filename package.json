@@ -3,6 +3,12 @@
   "version": "0.0.1",
   "description": "A server for the Udacity Reddit Clone project for ReactND",
   "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
   "keywords": [
     "udacity",
     "redux",
@@ -17,5 +23,9 @@
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "clone": "^2.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.6"
   }
 }

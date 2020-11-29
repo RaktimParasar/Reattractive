@@ -1,5 +1,5 @@
 const clone = require('clone')
-const config = require('./config')
+const config = require('../configure/config')
 
 let db = {}
 
