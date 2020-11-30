@@ -1,7 +1,7 @@
 import { GET_CATEGORIES, CATEGORIES_ERROR } from '../actions/types';
 
 const initialState = {
-    categories: [],
+    categories: null,
     loading: true,
     error: {},
 };
@@ -13,7 +13,7 @@ export const categories = (state = initialState, action) => {
         case GET_CATEGORIES:
             return {
                 ...state,
-                categories: payload,
+                categories: payload.categories,
                 loading: false
             };
         case CATEGORIES_ERROR:

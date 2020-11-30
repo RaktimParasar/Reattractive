@@ -4,9 +4,9 @@ const Navbar = props => {
     return (
         <Fragment>
             <nav>
-                <div class="nav-center">
+                <div className="nav-center">
                     <h1>minimal blog</h1>
-                    <button class="btn dark-mode">toggle</button>
+                    <button className="btn dark-mode">toggle</button>
                 </div>
             </nav>
         </Fragment>
