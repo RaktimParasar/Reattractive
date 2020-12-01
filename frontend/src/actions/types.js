@@ -1,2 +1,4 @@
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const CATEGORIES_ERROR = "CATEGORIES_ERROR";
+export const GET_POSTS = "GET_POSTS";
+export const POST_ERROR = "POST_ERROR";

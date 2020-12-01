@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCategories } from '../actions/categories';
@@ -11,17 +11,15 @@ const Categories = ({ getCategories, categories: { categories, loading} }) => {
     }, [getCategories]);
 
     return (
-        <Fragment>
-            <section className="category">
-                <h3 className="category-text">Categories</h3>
-                <button className="category-btn active-btn">All</button>
-                {
-                    categories && categories.map(category => (
-                    <button key={category.path} className="category-btn">{category.name}</button>
-                    ))
-                }
-            </section>
-        </Fragment>
+        <div className="category">
+            <h3 className="category-text">Categories</h3>
+            <button className="category-btn active-btn">All</button>
+            {
+                categories && categories.map(category => (
+                <button key={category.path} className="category-btn">{category.name}</button>
+                ))
+            }
+        </div>
     )
 }
 
