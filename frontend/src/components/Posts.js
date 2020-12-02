@@ -1,15 +1,21 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { getAllPosts } from '../actions/post';
+import { getAllPosts, getPostByCategory } from '../actions/post';
 import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import Spinner from './Spinner';
 
-const Posts = ({ getAllPosts, post: {posts, loading}}) => {
+const Posts = ({ 
+    match,
+    getPostByCategory,
+    getAllPosts, 
+    post: {posts, loading}}) => {
 
     useEffect(() => {
-        getAllPosts()
-    }, [getAllPosts]);
+        match.params.category ?
+            getPostByCategory(match.params.category) :
+            getAllPosts();
+    }, [getAllPosts, getPostByCategory, match.params.category]);
 
     return (
         <Fragment>
@@ -40,12 +46,14 @@ const Posts = ({ getAllPosts, post: {posts, loading}}) => {
                                                 {
                                                     post.commentCount > 1 ? "Comments" : "Comment"
                                                 }{' '}
-                                                    <span className="dot">{post.commentCount}</span></p>
+                                                    <span className="dot">{post.commentCount}</span>
+                                            </p>
                                             <p>
                                                 {
                                                     post.voteScore > 1 ? "Votes" : "Vote"
                                                 }{' '}
-                                                    <span className="dot">{post.voteScore}</span></p>
+                                                    <span className="dot">{post.voteScore}</span>
+                                            </p>
                                         </div>
                                     </article>
                         ))
@@ -67,6 +75,7 @@ const Posts = ({ getAllPosts, post: {posts, loading}}) => {
 
 Posts.propTypes = {
     getAllPosts: PropTypes.func.isRequired,
+    getPostByCategory: PropTypes.func.isRequired,
     post: PropTypes.object.isRequired,
 };
 
@@ -74,4 +83,7 @@ const mapStateToProps = state => ({
     post: state.post
 });
 
-export default connect(mapStateToProps, { getAllPosts })(Posts)
+export default connect(mapStateToProps, { 
+    getAllPosts,
+    getPostByCategory
+})(Posts)

@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import Posts from './Posts';
 import Categories from './Categories';
 
-const Homepage = () => {
+const Homepage = (props) => {
     return (
         <Fragment>
             <div className="action-tab">
@@ -24,7 +24,7 @@ const Homepage = () => {
             </div>
             <div className="post-action-tab">
                 <section className="articles">
-                    <Posts />
+                    <Posts {...props}/>
                 </section>    
                 <Categories />
             </div>

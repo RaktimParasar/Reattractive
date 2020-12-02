@@ -1,4 +1,4 @@
-import {GET_POSTS, POST_ERROR } from '../actions/types';
+import {GET_POSTS, GET_POST_BY_CATEGORY, POST_ERROR } from '../actions/types';
 
 const initialState = {
     posts: null,
@@ -11,6 +11,7 @@ export const post = (state = initialState, action) => {
 
     switch(type) {
         case GET_POSTS:
+        case GET_POST_BY_CATEGORY:
             return {
                 ...state,
                 posts: payload,
