@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCategories } from '../actions/categories';
+import Spinner from './Spinner';
 
 
 const Categories = ({ getCategories, categories: { categories, loading} }) => {
@@ -9,15 +10,19 @@ const Categories = ({ getCategories, categories: { categories, loading} }) => {
     useEffect(() => {
         getCategories()
     }, [getCategories]);
-
+    
     return (
         <div className="category">
             <h3 className="category-text">Categories</h3>
-            <button className="category-btn active-btn">All</button>
             {
-                categories && categories.map(category => (
-                <button key={category.path} className="category-btn">{category.name}</button>
-                ))
+                categories === null || loading ? <Spinner /> : <Fragment>
+                    <button className="category-btn active-btn">All</button>
+                {
+                    categories.length > 0 && categories.map(category => (
+                    <button key={category.path} className="category-btn">{category.name}</button>
+                    ))
+                }
+                </Fragment>
             }
         </div>
     )

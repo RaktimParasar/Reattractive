@@ -16,7 +16,7 @@ export const getCategories = () => async dispatch => {
     } catch(err) {
         dispatch({
             type: CATEGORIES_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { err }
         })
     }
 }

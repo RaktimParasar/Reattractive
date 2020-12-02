@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getAllPosts } from '../actions/post';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
 const Posts = ({ getAllPosts, post: {posts, loading}}) => {
 
@@ -20,7 +21,7 @@ const Posts = ({ getAllPosts, post: {posts, loading}}) => {
                             </a>
                             <div className="post-item">
                                 <div>
-                                    <span>{post.timestamp}</span>
+                                    <span><Moment format='MMMM Do, YYYY'>{post.timestamp}</Moment></span>
                                     <span>11 min read</span>
                                 </div>
                                 <div>
