@@ -1,15 +1,23 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getAllPosts, getPostByCategory } from '../actions/post';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
 import Spinner from './Spinner';
+import PostItem from './PostItem';
+import Categories from './Categories';
+
 
 const Posts = ({ 
     match,
     getPostByCategory,
     getAllPosts, 
     post: {posts, loading}}) => {
+
+    const [ radio, setRadio ] = useState("date");
+
+    const handleSort = val => {
+        setRadio(val);
+    };
 
     useEffect(() => {
         match.params.category ?
@@ -19,56 +27,68 @@ const Posts = ({
 
     return (
         <Fragment>
-            {
-                posts === null || loading ? <Spinner /> : <Fragment>
+            <div className="action-tab">
+                <div className="sort-by">
+                    <p>sort post by</p>
+                    <label>
+                        <input
+                        type="radio"
+                        name="date"
+                        value="date"
+                        checked={radio === "date"}
+                        onChange={(e) => handleSort(e.target.value)}
+                        />
+                        Recent
+                    </label>
+                    <label>
+                        <input
+                        type="radio"
+                        name="vote"
+                        value="vote"
+                        checked={radio === "vote"}
+                        onChange={(e) => handleSort(e.target.value)}
+                        />
+                        Max Vote
+                    </label>
+                </div>
+                    <a href="/create-post.html">
+                        <button className="btn create-post">create post</button>
+                    </a>
+            </div>
+            <div className="post-action-tab">
+                <section className="articles">
                     {
-                        posts.length > 0 ? (
-                        <Fragment>
+                        posts === null || loading ? <Spinner /> : <Fragment>
                             {
-                                posts.map(post => (
-                                    <article key={post.id} className="post">
-                                        <a className="post-link" href="/detail-post.html">
-                                            <h2>{post.title}</h2>
-                                        </a>
-                                        <div className="post-item">
-                                            <div>
-                                                <span><Moment format='MMMM Do, YYYY'>{post.timestamp}</Moment></span>
-                                                <span>11 min read</span>
-                                            </div>
-                                            <div>
-                                                <span>Author : {post.author}</span>
-                                                <span>Category : {post.category}</span>
-                                            </div>
-                                        </div>
-                                        <p className="post-text">{post.body}</p>
-                                        <div className="comment">
-                                            <p>
-                                                {
-                                                    post.commentCount > 1 ? "Comments" : "Comment"
-                                                }{' '}
-                                                    <span className="dot">{post.commentCount}</span>
-                                            </p>
-                                            <p>
-                                                {
-                                                    post.voteScore > 1 ? "Votes" : "Vote"
-                                                }{' '}
-                                                    <span className="dot">{post.voteScore}</span>
-                                            </p>
-                                        </div>
-                                    </article>
-                        ))
-                            }
+                                posts.length > 0 ? (
+                                <Fragment>
+                                    {
+                                        posts.sort((a, b) => {
+                                            switch(radio) {
+                                                case 'vote':
+                                                    return b.voteScore - a.voteScore;
+                                                case 'date':
+                                                    return b.timestamp - a.timestamp;
+                                                default:
+                                                    return a.voteScore - b.voteScore;
+                                            }
+                                        })
+                                        .map(post => (
+                                            <PostItem key={post.id} post={post} />
+                                ))
+                                    }
+                                </Fragment>
+                                ) : (
+                                <Fragment>
+                                    <h4>No post yet , Create a new post</h4>
+                                </Fragment>
+                                )
+                    }
                         </Fragment>
-                        ) : (
-                        <Fragment>
-                            <h4>No post yet , Create a new post</h4>
-                        </Fragment>
-                        )
-                            
-            }
-                </Fragment>
-            }
-            
+                    }
+                </section>
+                <Categories />
+            </div>
         </Fragment>
     )
 }

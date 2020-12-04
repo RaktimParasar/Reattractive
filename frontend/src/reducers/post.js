@@ -8,7 +8,7 @@ const initialState = {
 
 export const post = (state = initialState, action) => {
     const { type, payload } = action;
-
+    
     switch(type) {
         case GET_POSTS:
         case GET_POST_BY_CATEGORY:

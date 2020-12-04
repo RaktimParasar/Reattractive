@@ -2,7 +2,7 @@ import api from '../utils/api';
 import { 
     POST_ERROR, 
     GET_POSTS, 
-    GET_POST_BY_CATEGORY
+    GET_POST_BY_CATEGORY,
 } from './types';
 
 // Get all posts
@@ -20,10 +20,9 @@ export const getAllPosts = () => async dispatch => {
             payload: { err }
         })
     }
-}
+};
 
 // Get post by category
-
 export const getPostByCategory = (category) => async dispatch => {
     try{
         const res = await api.get(`/${category}/posts`);
@@ -38,4 +37,4 @@ export const getPostByCategory = (category) => async dispatch => {
             payload: { err }
         })
     }
-}
+};
