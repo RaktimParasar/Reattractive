@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 //components ---
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage.js';
+import SinglePost from './components/SinglePost';
 
 const App = () =>  {
   return (
@@ -17,6 +18,7 @@ const App = () =>  {
           <Switch>
             <Route exact path="/" component={Homepage} />
             <Route exact path="/:category" component={Homepage} />
+            <Route exact path="/posts/:id" component={SinglePost} />
           </Switch>
         </Fragment>
       </Router>
