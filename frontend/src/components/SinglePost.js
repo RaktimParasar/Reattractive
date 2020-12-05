@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSinglePost } from '../actions/post';
+import { getSinglePost, votePost } from '../actions/post';
 import Spinner from './Spinner';
 import Moment from 'react-moment';
 
 const SinglePost = ({ match, 
-    getSinglePost, 
+    getSinglePost,
+    votePost, 
     post: {post, loading} 
 }) => {
 
@@ -42,8 +43,16 @@ const SinglePost = ({ match,
                                 <span className="dot">{post.commentCount}</span>
                             </p>
                             <div>
-                                <button>UpVote</button>
-                                <button>DownVote</button>
+                                <button 
+                                onClick={() => votePost(post.id, 'upVote')}
+                                >
+                                UpVote
+                                </button>
+                                <button 
+                                onClick={() => votePost(post.id, 'downVote')}
+                                >
+                                DownVote
+                                </button>
                             </div>
                         </div>
                     </section>
@@ -56,10 +65,11 @@ const SinglePost = ({ match,
 SinglePost.propTypes = {
     post: PropTypes.object.isRequired,
     getSinglePost: PropTypes.func.isRequired,
+    votePost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
     post: state.post
 });
 
-export default connect(mapStateToProps, { getSinglePost })(SinglePost)
+export default connect(mapStateToProps, { getSinglePost, votePost })(SinglePost)
