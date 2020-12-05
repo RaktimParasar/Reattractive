@@ -1,7 +1,8 @@
-import {GET_POSTS, GET_POST_BY_CATEGORY, POST_ERROR } from '../actions/types';
+import {GET_POSTS, GET_POST_BY_CATEGORY, GET_SINGLE_POST, POST_ERROR } from '../actions/types';
 
 const initialState = {
     posts: null,
+    post: null,
     loading: true,
     error: {}
 }
@@ -16,6 +17,12 @@ export const post = (state = initialState, action) => {
                 ...state,
                 posts: payload,
                 loading: false,
+            };
+        case GET_SINGLE_POST:
+            return {
+                ...state,
+                post: payload,
+                loading: false
             };
         case POST_ERROR:
             return {

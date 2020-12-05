@@ -3,6 +3,7 @@ import {
     POST_ERROR, 
     GET_POSTS, 
     GET_POST_BY_CATEGORY,
+    GET_SINGLE_POST,
 } from './types';
 
 // Get all posts
@@ -38,3 +39,20 @@ export const getPostByCategory = (category) => async dispatch => {
         })
     }
 };
+
+// Get single post
+export const getSinglePost = id => async dispatch => {
+    try {
+        const res = await api.get(`/posts/${id}`);
+
+        dispatch({
+            type: GET_SINGLE_POST,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { err }
+        })
+    }
+}

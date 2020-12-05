@@ -1,34 +1,65 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { Fragment, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getSinglePost } from '../actions/post';
+import Spinner from './Spinner';
+import Moment from 'react-moment';
 
-const SinglePost = props => {
+const SinglePost = ({ match, 
+    getSinglePost, 
+    post: {post, loading} 
+}) => {
+
+    useEffect(() => {
+        getSinglePost(match.params.id)
+    }, [getSinglePost, match.params.id]);
+
     return (
-        <section class="post-section">
-        <div class="single-title-top">
-            <h1 class="single-title">Post detail title one</h1>
-            <div>
-                <button>Edit</button>
-                <button>Delete</button>
-            </div>
-        </div>
-        <div>
-            <p><span>by Raktim Parasar</span>, <span>on Sunday 4th, 2020</span></p>
-            <p><span>Category: React</span>, <span>Total vote <span>5</span></span></p>
-        </div>
-        <p>Jelly sweet roll jelly beans biscuit pie macaroon chocolate donut. Carrot cake caramels pie sweet apple pie tiramisu carrot cake. Marzipan marshmallow croissant tootsie roll lollipop. Cupcake lemon drops bear claw gummies. Jelly bear claw gummi bears lollipop cotton candy gummi bears chocolate bar cake cookie. Cupcake muffin danish muffin cookie gummies. Jelly beans tiramisu pudding. Toffee soufflé chocolate cake pastry brownie. Oat cake halvah sweet roll cotton candy croissant lollipop. Macaroon tiramisu chocolate bar candy candy carrot cake jelly sweet. Gummies croissant macaroon dessert. Chocolate cake dragée pie.</p>
-        <div class="single-title-top">
-            <p>Comment <span>8</span></p>
-            <div>
-                <button>UpVote</button>
-                <button>DownVote</button>
-            </div>
-        </div>
-    </section>
+        <Fragment>
+            {
+                post === null || loading ? <Spinner /> : <Fragment>
+                    <section className="post-section">
+                        <div className="single-title-top">
+                            <h1 className="single-title">{post.title}</h1>
+                        <div>
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                        </div>
+                        <div>
+                            <p>
+                                <span>by {post.author}</span>, <span>on <Moment format='MMMM Do, YYYY'>{post.timestamp}</Moment></span>
+                            </p>
+                            <p>
+                                <span>Category: {post.category}</span>, <span>Total vote <span className="dot">{post.voteScore}</span></span>
+                            </p>
+                        </div>
+                        <p>{post.body}</p>
+                        <div className="single-title-top">
+                            <p>{
+                                post.commentCount > 1 ? "Comments" : "Comment"
+                                }{' '}
+                                <span className="dot">{post.commentCount}</span>
+                            </p>
+                            <div>
+                                <button>UpVote</button>
+                                <button>DownVote</button>
+                            </div>
+                        </div>
+                    </section>
+                </Fragment>
+            }
+        </Fragment>
     )
-}
+};
 
 SinglePost.propTypes = {
+    post: PropTypes.object.isRequired,
+    getSinglePost: PropTypes.func.isRequired,
+};
 
-}
+const mapStateToProps = state => ({
+    post: state.post
+});
 
-export default SinglePost
+export default connect(mapStateToProps, { getSinglePost })(SinglePost)

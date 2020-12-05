@@ -3,3 +3,4 @@ export const CATEGORIES_ERROR = "CATEGORIES_ERROR";
 export const GET_POSTS = "GET_POSTS";
 export const POST_ERROR = "POST_ERROR";
 export const GET_POST_BY_CATEGORY = "GET_POST_BY_CATEGORY";
+export const GET_SINGLE_POST = "GET_SINGLE_POST";
