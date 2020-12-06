@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Spinner from './Spinner';
 import PostItem from './PostItem';
 import Categories from './Categories';
+import { Link } from 'react-router-dom';
 
 
 const Posts = ({ 
@@ -51,9 +52,9 @@ const Posts = ({
                         Max Vote
                     </label>
                 </div>
-                    <a href="/create-post.html">
+                    <Link to='/add/post'>
                         <button className="btn create-post">create post</button>
-                    </a>
+                    </Link>
             </div>
             <div className="post-action-tab">
                 <section className="articles">

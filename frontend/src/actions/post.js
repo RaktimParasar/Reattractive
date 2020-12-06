@@ -5,6 +5,7 @@ import {
     GET_POST_BY_CATEGORY,
     GET_SINGLE_POST,
     VOTE_POST,
+    ADD_POST,
 } from './types';
 
 // Get all posts
@@ -65,6 +66,23 @@ export const votePost = (id, vote) => async dispatch => {
 
         dispatch({
             type: VOTE_POST,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { err }
+        })
+    }
+};
+
+// Add post
+export const addPost = data => async dispatch => {
+    try {
+        const res = await api.post('/posts', data);
+        
+        dispatch({
+            type: ADD_POST,
             payload: res.data
         })
     } catch (err) {

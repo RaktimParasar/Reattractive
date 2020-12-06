@@ -48,7 +48,7 @@ Navbar
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .nav-center h1 {
@@ -204,7 +204,7 @@ Navbar
   width: 90vw;
   margin: 0 auto;
   max-width: 40rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 1rem;
   text-align: justify;
   border: 1px palevioletred solid;
@@ -246,6 +246,29 @@ Navbar
   justify-content: space-between;
   gap: 2rem;
 }
+
+/* Forms */
+.form .form-group {
+  margin: 1.2rem 0;
+}
+
+.form .form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+.form input[type='text'],
+.form select,
+.form textarea {
+display: block;
+width: 100%;
+padding: 0.4rem;
+font-size: 1.2rem;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
 
 /* Media queries*/
 @media screen and (max-width: 460px) {

@@ -8,3 +8,4 @@ export const VOTE_POST = "VOTE_POST";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const COMMENT_ERROR = "COMMENT_ERROR";
 export const VOTE_COMMENT = "VOTE_COMMENT";
+export const ADD_POST = "ADD_POST";

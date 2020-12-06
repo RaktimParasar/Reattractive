@@ -1,4 +1,11 @@
-import {GET_POSTS, GET_POST_BY_CATEGORY, GET_SINGLE_POST, POST_ERROR, VOTE_POST } from '../actions/types';
+import {
+    ADD_POST, 
+    GET_POSTS, 
+    GET_POST_BY_CATEGORY, 
+    GET_SINGLE_POST, 
+    POST_ERROR, 
+    VOTE_POST 
+} from '../actions/types';
 
 const initialState = {
     posts: null,
@@ -28,6 +35,12 @@ export const post = (state = initialState, action) => {
             return {
                 ...state,
                 post: payload,
+                loading: false
+            };
+        case ADD_POST:
+            return {
+                ...state,
+                posts: [...state.posts, payload],
                 loading: false
             };
         case POST_ERROR:

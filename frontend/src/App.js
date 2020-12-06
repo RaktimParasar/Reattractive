@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import Navbar from './components/Navbar';
 import Homepage from './components/Homepage.js';
 import SinglePost from './components/SinglePost';
+import AddPost from './components/AddPost';
 
 const App = () =>  {
   return (
@@ -19,6 +20,7 @@ const App = () =>  {
             <Route exact path="/" component={Homepage} />
             <Route exact path="/:category" component={Homepage} />
             <Route exact path="/posts/:id" component={SinglePost} />
+            <Route exact path="/add/post" component={AddPost} />
           </Switch>
         </Fragment>
       </Router>
