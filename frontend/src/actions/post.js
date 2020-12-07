@@ -6,6 +6,7 @@ import {
     GET_SINGLE_POST,
     VOTE_POST,
     ADD_POST,
+    DELETE_POST,
 } from './types';
 
 // Get all posts
@@ -91,4 +92,24 @@ export const addPost = data => async dispatch => {
             payload: { err }
         })
     }
+};
+
+// Delete post
+export const deletePost = id => async dispatch => {
+    if(window.confirm('Are you sure? This can NOT be undone')) {
+        try {
+            const res = await api.delete(`/posts/${id}`);
+    
+            dispatch({
+                type: DELETE_POST,
+                payload: res.data
+            })
+        } catch (err) {
+            dispatch({
+                type: POST_ERROR,
+                payload: { err }
+            })
+        }
+    }
+    
 };

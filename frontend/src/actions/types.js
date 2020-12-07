@@ -9,6 +9,7 @@ export const GET_SINGLE_POST = "GET_SINGLE_POST";
 export const ADD_POST = "ADD_POST";
 export const VOTE_POST = "VOTE_POST";
 export const POST_ERROR = "POST_ERROR";
+export const DELETE_POST = "DELETE_POST"
 
 // comments
 export const GET_COMMENTS = "GET_COMMENTS";

@@ -1,5 +1,6 @@
 import {
     ADD_POST, 
+    DELETE_POST, 
     GET_POSTS, 
     GET_POST_BY_CATEGORY, 
     GET_SINGLE_POST, 
@@ -26,6 +27,7 @@ export const post = (state = initialState, action) => {
                 loading: false,
             };
         case GET_SINGLE_POST:
+        case DELETE_POST:
             return {
                 ...state,
                 post: payload,

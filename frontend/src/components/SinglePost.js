@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getSinglePost, votePost } from '../actions/post';
+import { deletePost, getSinglePost, votePost } from '../actions/post';
 import { getComments } from '../actions/comments';
 import Spinner from './Spinner';
 import Moment from 'react-moment';
@@ -11,6 +11,8 @@ const SinglePost = ({ match,
   getSinglePost,
   votePost, 
   getComments,
+  deletePost,
+  history,
   comment: { comments, loader },
   post: { post, loading } 
 }) => {
@@ -19,6 +21,7 @@ const SinglePost = ({ match,
   getSinglePost(match.params.id);
   getComments(match.params.id);
   }, [getComments, getSinglePost, match.params.id]);
+
 
   return (
       <Fragment>
@@ -29,7 +32,12 @@ const SinglePost = ({ match,
                           <h1 className="single-title">{post.title}</h1>
                       <div>
                           <button>Edit</button>
-                          <button>Delete</button>
+                          <button 
+                            onClick={() => {
+                              deletePost(post.id);
+                              history.push('/');
+                            }}
+                          >Delete</button>
                       </div>
                       </div>
                       <div>
@@ -83,6 +91,7 @@ SinglePost.propTypes = {
   votePost: PropTypes.func.isRequired,
   getComments: PropTypes.func.isRequired,
   comment: PropTypes.object.isRequired,
+  deletePost: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -94,4 +103,5 @@ export default connect(mapStateToProps, {
   getSinglePost, 
   votePost,
   getComments,
+  deletePost
 })(SinglePost)
