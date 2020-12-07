@@ -5,6 +5,7 @@ import { getSinglePost, votePost } from '../actions/post';
 import { getComments } from '../actions/comments';
 import Spinner from './Spinner';
 import Moment from 'react-moment';
+import CommentItem from './CommentItem';
 
 const SinglePost = ({ match, 
   getSinglePost,
@@ -50,14 +51,14 @@ const SinglePost = ({ match,
                           </p>
                           <div>
                               <button 
-                              onClick={() => votePost(post.id, 'upVote')}
-                              >
-                              UpVote
+                                onClick={() => votePost(post.id, 'upVote')}
+                                >
+                                UpVote
                               </button>
                               <button 
-                              onClick={() => votePost(post.id, 'downVote')}
-                              >
-                              DownVote
+                                onClick={() => votePost(post.id, 'downVote')}
+                                >
+                                DownVote
                               </button>
                           </div>
                       </div>
@@ -68,29 +69,7 @@ const SinglePost = ({ match,
                 comments === null || loader ? <Spinner /> : <Fragment>
                   {
                     comments.map(comment => (
-                      <div key={comment.id} className="comment-container post-section">
-                        <div className="avatar">
-                          <h1>{comment.author.substring(0, 2)}</h1>
-                        </div>
-                      <div>
-                      <h4>{comment.author}</h4>
-                      <p>{comment.body}</p>
-                      <p><Moment format='MMMM Do, YYYY'>{comment.timestamp}</Moment></p>
-                        <div className="comment-action">
-                          <div>
-                            <button>{
-                                    comment.voteScore > 1 ? "Likes" : "Like"
-                                    }{' '}
-                                    <span>{comment.voteScore}</span></button>
-                            <button>Dislike</button>
-                          </div>
-                            <div>
-                              <button>Edit</button>
-                              <button>Delete</button>
-                            </div>
-                          </div>
-                      </div>
-                  </div>
+                      <CommentItem key={comment.id} comment={comment} />
                 ))}
               </Fragment>
               }
@@ -114,5 +93,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { 
   getSinglePost, 
   votePost,
-  getComments
+  getComments,
 })(SinglePost)

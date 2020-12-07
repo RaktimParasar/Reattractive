@@ -1,4 +1,4 @@
-import { GET_COMMENTS, COMMENT_ERROR } from '../actions/types';
+import { GET_COMMENTS, COMMENT_ERROR, VOTE_COMMENTS } from '../actions/types';
 
 const initialState = {
     comments: null,
@@ -16,6 +16,15 @@ export const comments = (state = initialState, action) => {
                 comments: payload,
                 loader: false
             };
+        case VOTE_COMMENTS:
+            return {
+                ...state,
+                comments: state.comments.map(comment => comment.id === payload.id ? {
+                    ...comment,
+                    voteScore: payload.voteScore
+                } : comment),
+                loader: false
+            }
         case COMMENT_ERROR:
             return {
                 ...state,
