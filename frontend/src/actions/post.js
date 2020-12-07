@@ -111,5 +111,4 @@ export const deletePost = id => async dispatch => {
             })
         }
     }
-    
 };

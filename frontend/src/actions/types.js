@@ -15,3 +15,4 @@ export const DELETE_POST = "DELETE_POST"
 export const GET_COMMENTS = "GET_COMMENTS";
 export const VOTE_COMMENTS = "VOTE_COMMENTS"
 export const COMMENT_ERROR = "COMMENT_ERROR";
+export const DELETE_COMMENT = "DELETE_COMMENT";

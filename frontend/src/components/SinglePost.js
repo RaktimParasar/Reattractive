@@ -22,7 +22,6 @@ const SinglePost = ({ match,
   getComments(match.params.id);
   }, [getComments, getSinglePost, match.params.id]);
 
-
   return (
       <Fragment>
           {
