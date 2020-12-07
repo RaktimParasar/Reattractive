@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletePost, getSinglePost, votePost } from '../actions/post';
@@ -6,6 +6,7 @@ import { getComments } from '../actions/comments';
 import Spinner from './Spinner';
 import Moment from 'react-moment';
 import CommentItem from './CommentItem';
+import { v4 as uuidv4 } from 'uuid';
 
 const SinglePost = ({ match, 
   getSinglePost,
@@ -17,10 +18,36 @@ const SinglePost = ({ match,
   post: { post, loading } 
 }) => {
 
+  const initialState = {
+    timestamp: Date.now(),
+    id: uuidv4(),
+    author: '',
+    body: '',
+    parentId: match.params.id
+  };
+  const [data, setData] = useState(initialState)
+  const [commentToggle, setCommentToggle] = useState(false);
+
   useEffect(() => {
   getSinglePost(match.params.id);
   getComments(match.params.id);
   }, [getComments, getSinglePost, match.params.id]);
+
+  const { author, body } = data;
+
+  const onChangeHandle = e => {
+    const { name, value } = e.target;
+
+    setData({
+      ...data,
+      [name]: value
+    })
+  };
+
+  const onSubmitHandle = e => {
+    e.preventDefault();
+    // addComment(data);
+  };
 
   return (
       <Fragment>
@@ -72,6 +99,41 @@ const SinglePost = ({ match,
                   </section>
               </Fragment>
             }
+            <div className="my-2">
+                <button 
+                    onClick={() => setCommentToggle(!commentToggle)} 
+                    type="button" 
+                    className="btn btn-light">
+                        Add Comment
+                </button>
+                </div>
+                {
+                  commentToggle &&
+                  <section className="post-section">
+                    <form className="form" onSubmit={(e) => onSubmitHandle(e)}>
+                      <div className="form-group">
+                      <input 
+                        type="text" 
+                        placeholder="*Author" 
+                        name="author" 
+                        value={author}
+                        onChange={(e) => onChangeHandle(e)}
+                        />
+                      <small className="form-text">Full name of author</small>
+                    </div>
+                  <div className="form-group">
+                            < textarea
+                    placeholder="*Post" 
+                    name="body"
+                    value={body}
+                    onChange={(e) => onChangeHandle(e)}
+                    />
+                    <small className="form-text">Add your comment here</small>
+                  </div>
+                  <input type="submit" value="Submit"/>
+                </form>
+                </section>
+                }
               {
                 comments === null || loader ? <Spinner /> : <Fragment>
                   {
