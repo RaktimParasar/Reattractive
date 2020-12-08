@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletePost, getSinglePost, votePost } from '../actions/post';
-import { getComments } from '../actions/comments';
+import { getComments, addComment } from '../actions/comments';
 import Spinner from './Spinner';
 import Moment from 'react-moment';
 import CommentItem from './CommentItem';
@@ -14,6 +14,7 @@ const SinglePost = ({ match,
   getComments,
   deletePost,
   history,
+  addComment,
   comment: { comments, loader },
   post: { post, loading } 
 }) => {
@@ -25,6 +26,7 @@ const SinglePost = ({ match,
     body: '',
     parentId: match.params.id
   };
+
   const [data, setData] = useState(initialState)
   const [commentToggle, setCommentToggle] = useState(false);
 
@@ -46,7 +48,9 @@ const SinglePost = ({ match,
 
   const onSubmitHandle = e => {
     e.preventDefault();
-    // addComment(data);
+    addComment(data);
+    setCommentToggle(!commentToggle);
+    setData(e.target.value = "")
   };
 
   return (
@@ -103,7 +107,7 @@ const SinglePost = ({ match,
                 <button 
                     onClick={() => setCommentToggle(!commentToggle)} 
                     type="button" 
-                    className="btn btn-light">
+                    className="btn create-post">
                         Add Comment
                 </button>
                 </div>
@@ -148,11 +152,12 @@ const SinglePost = ({ match,
 
 SinglePost.propTypes = {
   post: PropTypes.object.isRequired,
+  comment: PropTypes.object.isRequired,
   getSinglePost: PropTypes.func.isRequired,
   votePost: PropTypes.func.isRequired,
   getComments: PropTypes.func.isRequired,
-  comment: PropTypes.object.isRequired,
   deletePost: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -164,5 +169,6 @@ export default connect(mapStateToProps, {
   getSinglePost, 
   votePost,
   getComments,
-  deletePost
+  deletePost,
+  addComment
 })(SinglePost)

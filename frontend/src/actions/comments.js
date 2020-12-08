@@ -3,7 +3,8 @@ import {
     GET_COMMENTS, 
     COMMENT_ERROR, 
     VOTE_COMMENTS, 
-    DELETE_COMMENT
+    DELETE_COMMENT,
+    ADD_COMMENT
 } from './types';
 
 // Get all comments of a post
@@ -58,3 +59,20 @@ export const deleteComment = id => async dispatch => {
         }
     }
 };
+
+// Add comment
+export const addComment = data => async dispatch => {
+    try {
+        const res = await api.post('/comments', data);
+
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: COMMENT_ERROR,
+            payload: { msg: err.message }
+        })
+    }
+}

@@ -1,4 +1,4 @@
-import { GET_COMMENTS, COMMENT_ERROR, VOTE_COMMENTS, DELETE_COMMENT } from '../actions/types';
+import { GET_COMMENTS, COMMENT_ERROR, VOTE_COMMENTS, DELETE_COMMENT, ADD_COMMENT } from '../actions/types';
 
 const initialState = {
     comments: null,
@@ -15,6 +15,11 @@ export const comments = (state = initialState, action) => {
                 ...state,
                 comments: payload,
                 loader: false
+            };
+        case ADD_COMMENT:
+            return {
+                ...state,
+                comments: [payload, ...state.comments]
             };
         case DELETE_COMMENT:
             return {

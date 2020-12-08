@@ -269,6 +269,12 @@ border: 1px solid #ccc;
 border-radius: 5px;
 }
 
+.my-2 {
+  width: 90vw;
+  margin: 0 auto;
+  max-width: 40rem;
+  margin-top: 1rem;
+}
 
 /* Media queries*/
 @media screen and (max-width: 460px) {
