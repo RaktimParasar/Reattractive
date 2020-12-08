@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Homepage from './components/Homepage.js';
 import SinglePost from './components/SinglePost';
 import AddPost from './components/AddPost';
+import EditPost from './components/EditPost';
 
 const App = () =>  {
   return (
@@ -21,6 +22,7 @@ const App = () =>  {
             <Route exact path="/:category" component={Homepage} />
             <Route exact path="/posts/:id" component={SinglePost} />
             <Route exact path="/add/post" component={AddPost} />
+            <Route exact path="/edit/:id" component={EditPost} />
           </Switch>
         </Fragment>
       </Router>

@@ -7,6 +7,7 @@ import Spinner from './Spinner';
 import Moment from 'react-moment';
 import CommentItem from './CommentItem';
 import { v4 as uuidv4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 const SinglePost = ({ match, 
   getSinglePost,
@@ -61,7 +62,7 @@ const SinglePost = ({ match,
                       <div className="single-title-top">
                           <h1 className="single-title">{post.title}</h1>
                       <div>
-                          <button>Edit</button>
+                          <button><Link to={`/edit/${post.id}`}>Edit</Link></button>
                           <button 
                             onClick={() => {
                               deletePost(post.id);

@@ -7,6 +7,7 @@ import {
     VOTE_POST,
     ADD_POST,
     DELETE_POST,
+    EDIT_POST,
 } from './types';
 
 // Get all posts
@@ -107,8 +108,25 @@ export const deletePost = id => async dispatch => {
         } catch (err) {
             dispatch({
                 type: POST_ERROR,
-                payload: { err }
+                payload: { msg: err.message }
             })
         }
+    }
+};
+
+// Edit post
+export const editPost = (data, id) => async dispatch => {
+    try {
+        const res = await api.put(`/posts/${id}`, data);
+        
+        dispatch({
+            type: EDIT_POST,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: POST_ERROR,
+            payload: { msg: err.message }
+        })
     }
 };

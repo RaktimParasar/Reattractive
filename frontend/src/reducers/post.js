@@ -1,6 +1,7 @@
 import {
     ADD_POST, 
     DELETE_POST, 
+    EDIT_POST, 
     GET_POSTS, 
     GET_POST_BY_CATEGORY, 
     GET_SINGLE_POST, 
@@ -43,6 +44,12 @@ export const post = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [...state.posts, payload],
+                loading: false
+            };
+        case EDIT_POST:
+            return {
+                ...state,
+                post: payload,
                 loading: false
             };
         case POST_ERROR:
