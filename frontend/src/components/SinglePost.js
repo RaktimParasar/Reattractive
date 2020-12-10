@@ -87,7 +87,7 @@ const SinglePost = ({ match,
                           <p>{
                               post.commentCount > 1 ? "Comments" : "Comment"
                               }{' '}
-                              <span className="dot">{post.commentCount}</span>
+                              <span className="dot">{comments && comments.length}</span>
                           </p>
                           <div>
                               <button 

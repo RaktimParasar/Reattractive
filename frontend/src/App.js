@@ -6,7 +6,7 @@ import store from './store';
 import { Provider } from 'react-redux';
 //components ---
 import Navbar from './components/Navbar';
-import Homepage from './components/Homepage.js';
+import Posts from './components/Posts';
 import SinglePost from './components/SinglePost';
 import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
@@ -19,8 +19,8 @@ const App = () =>  {
         <Fragment>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Homepage} />
-            <Route exact path="/:category" component={Homepage} />
+            <Route exact path="/" component={Posts} />
+            <Route exact path="/:category" component={Posts} />
             <Route exact path="/posts/:id" component={SinglePost} />
             <Route exact path="/add/post" component={AddPost} />
             <Route exact path="/edit/:id" component={EditPost} />
