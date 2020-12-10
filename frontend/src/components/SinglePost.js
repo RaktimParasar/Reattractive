@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletePost, getSinglePost, votePost } from '../actions/post';
-import { getComments, addComment } from '../actions/comments';
+import { getComments, addComment, getSingleComment } from '../actions/comments';
 import Spinner from './Spinner';
 import Moment from 'react-moment';
 import CommentItem from './CommentItem';
@@ -30,6 +30,7 @@ const SinglePost = ({ match,
 
   const [data, setData] = useState(initialState)
   const [commentToggle, setCommentToggle] = useState(false);
+
 
   useEffect(() => {
   getSinglePost(match.params.id);
@@ -163,7 +164,7 @@ SinglePost.propTypes = {
 
 const mapStateToProps = state => ({
   post: state.post,
-  comment: state.comments
+  comment: state.comments,
 });
 
 export default connect(mapStateToProps, { 
@@ -171,5 +172,5 @@ export default connect(mapStateToProps, {
   votePost,
   getComments,
   deletePost,
-  addComment
+  addComment,
 })(SinglePost)

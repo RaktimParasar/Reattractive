@@ -4,7 +4,9 @@ import {
     COMMENT_ERROR, 
     VOTE_COMMENTS, 
     DELETE_COMMENT,
-    ADD_COMMENT
+    ADD_COMMENT,
+    EDIT_COMMENT,
+    GET_SINGLE_COMMENT,
 } from './types';
 
 // Get all comments of a post
@@ -19,7 +21,7 @@ export const getComments = id => async dispatch => {
     } catch (err) {
         dispatch({
             type: COMMENT_ERROR,
-            payload: { err }
+            payload: { msg: err.message }
         })
     }
 };
@@ -36,7 +38,7 @@ export const voteComments = (id, vote) => async dispatch => {
     } catch (err) {
         dispatch({
             type: COMMENT_ERROR,
-            payload: { err }
+            payload: { msg: err.message }
         })
     }
 };
@@ -54,7 +56,7 @@ export const deleteComment = id => async dispatch => {
         } catch (err) {
             dispatch({
                 type: COMMENT_ERROR,
-                payload: { err }
+                payload: { msg: err.message }
             })
         }
     }
@@ -75,4 +77,39 @@ export const addComment = data => async dispatch => {
             payload: { msg: err.message }
         })
     }
-}
+};
+
+// Get Single Comment
+export const getSingleComment = id => async dispatch => {
+    try {
+        const res = await api.get(`/comments/${id}`)
+        
+        dispatch({
+            type: GET_SINGLE_COMMENT,
+            payload: res.data
+        })
+    } catch (err) {
+        dispatch({
+            type: COMMENT_ERROR,
+            payload: { msg: err.message }
+        })
+    }
+};
+
+// Edit comment
+export const editComment = (data, id) => async dispatch => {
+    try {
+        const res = await api.put(`/comments/${id}`, data);
+
+        dispatch({
+            type: EDIT_COMMENT,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: COMMENT_ERROR,
+            payload: { msg: err.message }
+        })
+    }
+};
+

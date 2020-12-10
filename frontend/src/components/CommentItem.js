@@ -3,8 +3,15 @@ import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { voteComments, deleteComment } from '../actions/comments';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-const CommentItem = ({ comment, voteComments, deleteComment }) => {
+const CommentItem = ({ 
+    comment, 
+    voteComments, 
+    deleteComment,
+}) => {
+    
+    
     return (
         <div key={comment.id} className="comment-container post-section">
             <div className="avatar">
@@ -23,7 +30,7 @@ const CommentItem = ({ comment, voteComments, deleteComment }) => {
                 <button onClick={() => voteComments(comment.id, 'downVote')}>Dislike</button>
                 </div>
                 <div>
-                    <button>Edit</button>
+                    <button><Link to={`/editcomment/${comment.id}`}>Edit</Link></button>
                     <button onClick={() => deleteComment(comment.id)}>Delete</button>
                 </div>
                 </div>
@@ -37,4 +44,8 @@ CommentItem.propTypes = {
     deleteComment: PropTypes.func.isRequired,
 };
 
-export default connect(null, { voteComments, deleteComment })(CommentItem)
+
+export default connect(null, { 
+    voteComments, 
+    deleteComment, 
+})(CommentItem)

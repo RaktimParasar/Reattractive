@@ -1,7 +1,16 @@
-import { GET_COMMENTS, COMMENT_ERROR, VOTE_COMMENTS, DELETE_COMMENT, ADD_COMMENT } from '../actions/types';
+import { 
+    GET_COMMENTS, 
+    COMMENT_ERROR, 
+    VOTE_COMMENTS, 
+    DELETE_COMMENT, 
+    ADD_COMMENT, 
+    EDIT_COMMENT,
+    GET_SINGLE_COMMENT, 
+} from '../actions/types';
 
 const initialState = {
     comments: null,
+    singleComment: {},
     loader: true,
     error: {}
 }
@@ -14,6 +23,13 @@ export const comments = (state = initialState, action) => {
             return {
                 ...state,
                 comments: payload,
+                loader: false
+            };
+        case GET_SINGLE_COMMENT:
+        case EDIT_COMMENT:
+            return {
+                ...state,
+                singleComment: payload,
                 loader: false
             };
         case ADD_COMMENT:
@@ -35,7 +51,7 @@ export const comments = (state = initialState, action) => {
                     voteScore: payload.voteScore
                 } : comment),
                 loader: false
-            }
+            };
         case COMMENT_ERROR:
             return {
                 ...state,

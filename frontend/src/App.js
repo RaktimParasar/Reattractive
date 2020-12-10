@@ -10,6 +10,7 @@ import Homepage from './components/Homepage.js';
 import SinglePost from './components/SinglePost';
 import AddPost from './components/AddPost';
 import EditPost from './components/EditPost';
+import EditComment from './components/EditComment';
 
 const App = () =>  {
   return (
@@ -23,6 +24,7 @@ const App = () =>  {
             <Route exact path="/posts/:id" component={SinglePost} />
             <Route exact path="/add/post" component={AddPost} />
             <Route exact path="/edit/:id" component={EditPost} />
+            <Route exact path="/editcomment/:id" component={EditComment} />
           </Switch>
         </Fragment>
       </Router>
