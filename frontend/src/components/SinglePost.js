@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deletePost, getSinglePost, votePost } from '../actions/post';
-import { getComments, addComment, getSingleComment } from '../actions/comments';
+import { getComments, addComment } from '../actions/comments';
 import Spinner from './Spinner';
 import Moment from 'react-moment';
 import CommentItem from './CommentItem';

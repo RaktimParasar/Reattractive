@@ -37,11 +37,25 @@ body {
   transition: all 0.3s linear;
 }
 
-/*
-Navbar
-*/
+a {
+  text-decoration: none;
+  color: inherit
+} 
 
-.nav-center {
+/* conatiner */
+.container {
+  width: 90vw;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* navbar */
+.navbar {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+/* .nav-center {
   width: 90vw;
   max-width: 600px;
   margin: 0 auto;
@@ -49,7 +63,7 @@ Navbar
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-}
+} */
 
 .nav-center h1 {
   font-size: 2.5rem;
