@@ -6,6 +6,19 @@ import { Link } from 'react-router-dom';
 
 const PostItem = ({ post }) => {
     
+    //read time
+    const wordsPerMinute = 200;
+    let textLength = post.body.split(" ").length
+    let totalTime;
+    if(textLength > 0){
+        let value = Math.ceil(textLength / wordsPerMinute);
+        if(textLength < wordsPerMinute) {
+            totalTime = 'less than a min read'
+        } else {
+            totalTime = `${value} min read`
+        }
+    }
+
     return (
         <article key={post.id} className="post">
             <Link to={`/posts/${post.id}`}>
@@ -14,7 +27,7 @@ const PostItem = ({ post }) => {
             <div className="post-item">
                 <div>
                     <span><Moment format='MMMM Do, YYYY'>{post.timestamp}</Moment></span>
-                    <span>11 min read</span>
+                    <span>{totalTime}</span>
                 </div>
                 <div>
                     <span>Author : {post.author}</span>
