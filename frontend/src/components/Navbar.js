@@ -29,7 +29,8 @@ const Navbar = () => {
             <nav>
                 <div className="navbar center-items">
                     <Link to='/'><h1>reattractive</h1></Link>
-                    <div onClick={toggleTheme} className="dark-mode"><i class="fas fa-sun"></i></div>
+                    <div onClick={toggleTheme} className="dark-mode">
+                        <i className={`fas ${theme === 'light-theme' ? 'fa-moon' : 'fa-sun'}`} ></i></div>
                 </div>
             </nav>
         </Fragment>

@@ -15,7 +15,7 @@ const CommentItem = ({
         <div key={comment.id} className="single-post mx-2">
             <div  className="comment-container">
                 <div className="avatar">
-                    <h1>{comment.author.substring(0, 2)}</h1>
+                    <h1>{comment.author.slice(-2)}</h1>
                 </div>
                 <div>
                 <p class="comment-name">{comment.author}</p>

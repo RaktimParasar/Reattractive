@@ -82,11 +82,12 @@ a {
 
 /* Dark mode toggle */
 .dark-mode {
-  color: red;
+  color: var(--clr-font);
   font-size: 1.5rem;
-  text-shadow: 2px 4px 6px yellow;
   background-color: transparent !important;
+  cursor: pointer;
 }
+
 
 /* Sort-by section */
 .center-items label {
@@ -131,11 +132,6 @@ a {
 }
 
 .categories a:hover {
-  color: var(--clr-primary);
-  box-shadow: 0 2px var(--clr-primary);
-}
-
-.active-btn {
   color: var(--clr-primary);
   box-shadow: 0 2px var(--clr-primary);
 }
@@ -197,7 +193,6 @@ a {
 /* Detail post style */
 .single-post{
   padding: 1rem;
-  background-color: #f7f5f6;
   border-radius: 10px;
   box-shadow: var(--shadow);
   margin-bottom: 2rem;
@@ -298,7 +293,6 @@ a {
 /* Forms */
 .form-main {
   padding: 1rem;
-  background-color: #f7f5f6;
   border-radius: 10px;
   box-shadow: var(--shadow);
 }

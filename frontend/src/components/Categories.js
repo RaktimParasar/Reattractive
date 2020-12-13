@@ -16,13 +16,13 @@ const Categories = ({
     useEffect(() => {
         getCategories()
     }, [getCategories]);
-    
+
     return (
         <div className="categories center-items">
             <h4>Categories</h4>
             {
                 categories === null || loading ? <Spinner /> : <Fragment>
-                    <Link className="active-btn" to='/'>All</Link>
+                    <Link to='/'>All</Link>
                 {
                     categories.length > 0 && categories.map(category => (
                         <Link 
