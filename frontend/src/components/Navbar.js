@@ -27,9 +27,9 @@ const Navbar = () => {
     return (
         <Fragment>
             <nav>
-                <div className="navbar">
+                <div className="navbar center-items">
                     <Link to='/'><h1>reattractive</h1></Link>
-                    <button onClick={toggleTheme} className="btn dark-mode">toggle</button>
+                    <div onClick={toggleTheme} className="dark-mode"><i class="fas fa-sun"></i></div>
                 </div>
             </nav>
         </Fragment>

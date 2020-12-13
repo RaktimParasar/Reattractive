@@ -16,7 +16,7 @@ const App = () =>  {
   return (
     <Provider store={store}>
       <Router>
-          <div className="container">
+          <main className="container">
             <Navbar />
             <Switch>
               <Route exact path="/" component={Posts} />
@@ -26,7 +26,7 @@ const App = () =>  {
               <Route exact path="/edit/:id" component={EditPost} />
               <Route exact path="/editcomment/:id" component={EditComment} />
             </Switch>
-          </div>
+          </main>
       </Router>
     </Provider>
   );

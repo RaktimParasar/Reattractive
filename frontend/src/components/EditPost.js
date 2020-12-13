@@ -42,7 +42,7 @@ const EditPost = ({
         history.push(`/posts/${post.id}`)
     }
     return (
-        <section className="post-section">
+        <section className="form-main">
         <h1>
             Edit Post
         </h1>
@@ -55,19 +55,22 @@ const EditPost = ({
             name="title"
             value={title}
             onChange={(e) => onChangeHandle(e)}
+            required
             />
-            <small className="form-text">A short and precise title with 26 characters only</small>
+            <small className="form-text">A short and precise title</small>
         </div>
         <div className="form-group">
             < textarea
+                cols="10" rows="2"
                 placeholder="*Post" 
                 name="body"
                 value={body}
                 onChange={(e) => onChangeHandle(e)}
+                required
             />
             <small className="form-text">Write your content here</small>
         </div>
-        <input type="submit" value="Submit"/>
+        <input className="btn add-comment" type="submit" value="Submit"/>
         </form>
     </section>
     )

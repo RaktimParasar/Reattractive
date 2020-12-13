@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 
 
 const PostItem = ({ post }) => {
+    
     return (
         <article key={post.id} className="post">
-            <Link className="post-link" to={`/posts/${post.id}`}>
+            <Link to={`/posts/${post.id}`}>
                 <h2>{post.title}</h2>
             </Link>
             <div className="post-item">
@@ -21,19 +22,19 @@ const PostItem = ({ post }) => {
                 </div>
             </div>
             <p className="post-text">{post.body}</p>
-            <div className="comment">
-                <p>
+            <div className="like-counter">
+                <span>
                     {
                         post.commentCount > 1 ? "Comments" : "Comment"
                     }{' '}
                         <span className="dot">{post.commentCount}</span>
-                </p>
-                <p>
+                </span>
+                <span>
                     {
                         post.voteScore > 1 ? "Votes" : "Vote"
                     }{' '}
                         <span className="dot">{post.voteScore}</span>
-                </p>
+                </span>
             </div>
         </article>
     )

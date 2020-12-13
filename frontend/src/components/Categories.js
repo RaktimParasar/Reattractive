@@ -18,21 +18,18 @@ const Categories = ({
     }, [getCategories]);
     
     return (
-        <div className="category">
-            <h3 className="category-text">Categories</h3>
+        <div className="categories center-items">
+            <h4>Categories</h4>
             {
                 categories === null || loading ? <Spinner /> : <Fragment>
-                    <button className="category-btn active-btn">
-                        <Link to='/'>All</Link>
-                    </button>
+                    <Link className="active-btn" to='/'>All</Link>
                 {
                     categories.length > 0 && categories.map(category => (
-                    <button key={category.path} className="category-btn">
                         <Link 
+                        key={category.path}
                         to={`/${category.path}`}
                         onClick={() => getPostByCategory(category.path)}
                         >{category.name}</Link>
-                    </button>
                     ))
                 }
                 </Fragment>

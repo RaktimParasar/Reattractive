@@ -46,7 +46,7 @@ const [ data, setData ] = useState(initialState);
   }
 
   return (
-    <section className="post-section">
+    <section className="form-main">
       <h1>
         Create New Post
       </h1>
@@ -59,8 +59,9 @@ const [ data, setData ] = useState(initialState);
           name="title"
           value={title}
           onChange={(e) => onChangeHandle(e)}
+          required
           />
-        <small className="form-text">A short and precise title with 26 characters only</small>
+        <small className="form-text">A short and precise title</small>
       </div>
       <div className="form-group">
         <input 
@@ -69,8 +70,9 @@ const [ data, setData ] = useState(initialState);
           name="author" 
           value={author}
           onChange={(e) => onChangeHandle(e)}
+          required
           />
-        <small className="form-text">Full name of author</small>
+        <small className="form-text">Enter Full name of author</small>
       </div>
       <div className="form-group">
         <select name="category" value={category} onChange={(e) => onChangeHandle(e)}>
@@ -82,15 +84,17 @@ const [ data, setData ] = useState(initialState);
       </div>
       <div className="form-group">
         < textarea
+          cols="10" rows="2"
           placeholder="*Post" 
           name="body"
           value={body}
           onChange={(e) => onChangeHandle(e)}
+          required
           />
         <small className="form-text">Write your content here</small>
       </div>
-      <input type="submit" value="Submit"/>
-      <Link to='/'>Go Back</Link>
+      <input className="btn add-comment" type="submit" value="Submit"/>{' '}
+      <Link className="btn add-comment" to='/'>Go Back</Link>
     </form>
   </section>
   )

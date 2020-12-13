@@ -40,7 +40,7 @@ const EditComment = ({
         history.push(`/posts/${singleComment.parentId}`)
     }
     return (
-            <section className="post-section">
+        <section className="form-main">
         <h1>
             Edit Comment
         </h1>
@@ -48,14 +48,16 @@ const EditComment = ({
         <form className="form" onSubmit={(e) => onSubmitHandle(e)}>
         <div className="form-group">
             < textarea
-                placeholder="*Post" 
+                cols="10" rows="2"
+                placeholder="*Comment" 
                 name="body"
                 value={body}
                 onChange={(e) => onChangeHandle(e)}
+                required
             />
             <small className="form-text">Write your content here</small>
         </div>
-        <input type="submit" value="Submit"/>
+        <input className="btn add-comment" type="submit" value="Submit"/>
         </form>
     </section>
     )

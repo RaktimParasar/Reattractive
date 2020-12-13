@@ -28,9 +28,9 @@ const Posts = ({
 
     return (
         <Fragment>
-            <div className="action-tab">
-                <div className="sort-by">
-                    <p>sort post by</p>
+            <section className="center-items sortby-action">
+                <div className="sortby-text">
+                    <p>sort post by -</p>
                     <label>
                         <input
                         type="radio"
@@ -53,42 +53,40 @@ const Posts = ({
                     </label>
                 </div>
                     <Link to='/add/post'>
-                        <button className="btn create-post">create post</button>
+                        <button className="btn add-post">Add post</button>
                     </Link>
-            </div>
-            <div className="post-action-tab">
-                <section className="articles">
-                    {
-                        posts === null || loading ? <Spinner /> : <Fragment>
-                            {
-                                posts.length > 0 ? (
-                                <Fragment>
-                                    {
-                                        posts.sort((a, b) => {
-                                            switch(radio) {
-                                                case 'vote':
-                                                    return b.voteScore - a.voteScore;
-                                                case 'date':
-                                                    return b.timestamp - a.timestamp;
-                                                default:
-                                                    return a.voteScore - b.voteScore;
-                                            }
-                                        })
-                                        .map(post => (
-                                            <PostItem key={post.id} post={post} />
-                                ))
-                                    }
-                                </Fragment>
-                                ) : (
-                                <Fragment>
-                                    <h4>No post yet , Create a new post</h4>
-                                </Fragment>
-                                )
-                    }
-                        </Fragment>
-                    }
-                </section>
-                <Categories />
+            </section>
+            <Categories />
+            <div className="articles">
+                {
+                    posts === null || loading ? <Spinner /> : <Fragment>
+                        {
+                            posts.length > 0 ? (
+                            <Fragment>
+                                {
+                                    posts.sort((a, b) => {
+                                        switch(radio) {
+                                            case 'vote':
+                                                return b.voteScore - a.voteScore;
+                                            case 'date':
+                                                return b.timestamp - a.timestamp;
+                                            default:
+                                                return a.voteScore - b.voteScore;
+                                        }
+                                    })
+                                    .map(post => (
+                                        <PostItem key={post.id} post={post} />
+                            ))
+                                }
+                            </Fragment>
+                            ) : (
+                            <Fragment>
+                                <h4>No post found, Create a new post</h4>
+                            </Fragment>
+                            )
+                }
+                    </Fragment>
+                }
             </div>
         </Fragment>
     )

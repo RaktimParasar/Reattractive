@@ -59,31 +59,35 @@ const SinglePost = ({ match,
       <Fragment>
           {
               post === null || loading ? <Spinner /> : <Fragment>
-                  <section className="post-section">
-                      <div className="single-title-top">
+                  <section className="single-post">
+                      <div>
                           <h1 className="single-title">{post.title}</h1>
-                      <div>
-                          <button><Link to={`/edit/${post.id}`}>Edit</Link></button>
-                          <button 
-                            onClick={() => {
-                              deletePost(post.id);
-                              history.push('/');
-                            }}
-                          >Delete</button>
+                          <div className="float">
+                            <button className="btn add-post text-size">
+                              <Link to={`/edit/${post.id}`}><i class="far fa-edit"></i></Link>
+                            </button>{' '}
+                            <button 
+                              class="btn add-post text-size"
+                              onClick={() => {
+                                deletePost(post.id);
+                                history.push('/');
+                              }}
+                              ><i class="far fa-trash-alt"></i>
+                            </button>
+                          </div>
                       </div>
-                      </div>
-                      <div>
+                      <div className="main-post-item">
                           <p>
                               <span>by {post.author}</span>, 
                               <span>on <Moment format='MMMM Do, YYYY'>{post.timestamp}</Moment></span>
                           </p>
                           <p>
                               <span>Category: {post.category}</span>, 
-                              <span>Total vote <span className="dot">{post.voteScore}</span></span>
+                              <span>Total vote <span className="dot regular">{post.voteScore}</span></span>
                           </p>
                       </div>
-                      <p>{post.body}</p>
-                      <div className="single-title-top">
+                      <p class="post-text">{post.body}</p>
+                      <div className="center-items comment-counter">
                           <p>{
                               post.commentCount > 1 ? "Comments" : "Comment"
                               }{' '}
@@ -91,52 +95,55 @@ const SinglePost = ({ match,
                           </p>
                           <div>
                               <button 
+                                className="btn add-post text-size"
                                 onClick={() => votePost(post.id, 'upVote')}
                                 >
-                                UpVote
-                              </button>
+                                <i class="far fa-thumbs-up"></i>
+                              </button>{' '}
                               <button 
+                                className="btn add-post text-size"
                                 onClick={() => votePost(post.id, 'downVote')}
                                 >
-                                DownVote
+                                <i class="far fa-thumbs-down"></i>
                               </button>
                           </div>
                       </div>
                   </section>
               </Fragment>
             }
-            <div className="my-2">
                 <button 
                     onClick={() => setCommentToggle(!commentToggle)} 
                     type="button" 
-                    className="btn create-post">
-                        Add Comment
+                    className="btn add-comment">
+                        Add Comment <i class="fas fa-plus-circle"></i>
                 </button>
-                </div>
                 {
                   commentToggle &&
-                  <section className="post-section">
+                  <section className="form-main my-2">
                     <form className="form" onSubmit={(e) => onSubmitHandle(e)}>
                       <div className="form-group">
                       <input 
                         type="text" 
-                        placeholder="*Author" 
+                        placeholder="*Name" 
                         name="author" 
                         value={author}
                         onChange={(e) => onChangeHandle(e)}
+                        required
                         />
-                      <small className="form-text">Full name of author</small>
+                      <small className="form-text">Enter your full name</small>
                     </div>
                   <div className="form-group">
-                            < textarea
-                    placeholder="*Post" 
-                    name="body"
-                    value={body}
-                    onChange={(e) => onChangeHandle(e)}
+                    < textarea
+                      cols="10" rows="2"
+                      placeholder="*Comment" 
+                      name="body"
+                      value={body}
+                      onChange={(e) => onChangeHandle(e)}
+                      required
                     />
                     <small className="form-text">Add your comment here</small>
                   </div>
-                  <input type="submit" value="Submit"/>
+                  <input className="btn add-comment" type="submit" value="Submit"/>
                 </form>
                 </section>
                 }
