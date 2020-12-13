@@ -64,15 +64,15 @@ const SinglePost = ({ match,
                           <h1 className="single-title">{post.title}</h1>
                           <div className="float">
                             <button className="btn add-post text-size">
-                              <Link to={`/edit/${post.id}`}><i class="far fa-edit"></i></Link>
+                              <Link to={`/edit/${post.id}`}><i className="far fa-edit"></i></Link>
                             </button>{' '}
                             <button 
-                              class="btn add-post text-size"
+                              className="btn add-post text-size"
                               onClick={() => {
                                 deletePost(post.id);
                                 history.push('/');
                               }}
-                              ><i class="far fa-trash-alt"></i>
+                              ><i className="far fa-trash-alt"></i>
                             </button>
                           </div>
                       </div>
@@ -86,7 +86,7 @@ const SinglePost = ({ match,
                               <span>Total vote <span className="dot regular">{post.voteScore}</span></span>
                           </p>
                       </div>
-                      <p class="post-text">{post.body}</p>
+                      <p className="post-text">{post.body}</p>
                       <div className="center-items comment-counter">
                           <p>{
                               post.commentCount > 1 ? "Comments" : "Comment"
@@ -98,13 +98,13 @@ const SinglePost = ({ match,
                                 className="btn add-post text-size"
                                 onClick={() => votePost(post.id, 'upVote')}
                                 >
-                                <i class="far fa-thumbs-up"></i>
+                                <i className="far fa-thumbs-up"></i>
                               </button>{' '}
                               <button 
                                 className="btn add-post text-size"
                                 onClick={() => votePost(post.id, 'downVote')}
                                 >
-                                <i class="far fa-thumbs-down"></i>
+                                <i className="far fa-thumbs-down"></i>
                               </button>
                           </div>
                       </div>
@@ -115,7 +115,7 @@ const SinglePost = ({ match,
                     onClick={() => setCommentToggle(!commentToggle)} 
                     type="button" 
                     className="btn add-comment">
-                        Add Comment <i class="fas fa-plus-circle"></i>
+                        Add Comment <i className="fas fa-plus-circle"></i>
                 </button>
                 {
                   commentToggle &&
