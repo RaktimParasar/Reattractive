@@ -78,11 +78,11 @@ const SinglePost = ({ match,
                       </div>
                       <div className="main-post-item">
                           <p>
-                              <span>by {post.author}</span>, 
+                              <span>by {post.author}</span>,{' '}
                               <span>on <Moment format='MMMM Do, YYYY'>{post.timestamp}</Moment></span>
                           </p>
                           <p>
-                              <span>Category: {post.category}</span>, 
+                              <span>Category: {post.category}</span>,{' '}
                               <span>Total vote <span className="dot regular">{post.voteScore}</span></span>
                           </p>
                       </div>

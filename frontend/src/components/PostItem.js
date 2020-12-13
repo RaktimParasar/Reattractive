@@ -19,10 +19,13 @@ const PostItem = ({ post }) => {
         }
     }
 
+    
     return (
         <article key={post.id} className="post">
             <Link to={`/posts/${post.id}`}>
-                <h2>{post.title}</h2>
+                <h2>{
+                post.title.length > 50 ? `${post.title.slice(0, 50)}...` : post.title
+                }</h2>
             </Link>
             <div className="post-item">
                 <div>
@@ -34,7 +37,11 @@ const PostItem = ({ post }) => {
                     <span>Category : {post.category}</span>
                 </div>
             </div>
-            <p className="post-text">{post.body}</p>
+            <p className="post-text">{
+                post.body.length > 100 ? 
+                `${post.title.slice(0, 100)}... read more` : 
+                post.body
+            }</p>
             <div className="like-counter">
                 <span>
                     {
