@@ -11,10 +11,6 @@ const path = require("path");
 
 const app = express();
 
-app.use(express.static("frontend/build"));
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-});
 app.use(cors());
 
 app.use((req, res, next) => {
@@ -203,6 +199,11 @@ app.delete("/comments/:id", (req, res) => {
       });
     }
   );
+});
+
+app.use(express.static("frontend/build"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
 });
 
 app.listen(config.port, () => {
